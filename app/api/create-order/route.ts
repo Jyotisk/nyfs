@@ -1,16 +1,29 @@
 import { NextResponse } from 'next/server';
 import Razorpay from 'razorpay';
 
-const razorpay = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
-});
+// Lazily create the client inside the handler. Instantiating at module scope
+// throws "key_id is mandatory" when the env vars are absent (e.g. during
+// `next build`), which fails the whole build.
+function getRazorpay(): Razorpay | null {
+  const key_id = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
+  if (!key_id || !key_secret) return null;
+  return new Razorpay({ key_id, key_secret });
+}
 
 // Allowed fixed amounts (in INR) to prevent arbitrary amount manipulation
 const ALLOWED_AMOUNTS = [499, 999, 1499];
 
 export async function POST(req: Request) {
   try {
+    const razorpay = getRazorpay();
+    if (!razorpay) {
+      return NextResponse.json(
+        { error: 'Payments are not configured.' },
+        { status: 503 }
+      );
+    }
+
     const body = await req.json();
     const { amount } = body;
 
