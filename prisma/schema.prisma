@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// A registered participant. Merges what used to live in Supabase's
+// auth.users (email + password) and the separate `profiles` table.
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  fullName     String?
+  whatsapp     String?
+  institution  String?
+  grade        String?
+  city         String?
+  motivation   String?
+  problem      String?
+  paymentId    String?
+  orderId      String?
+  createdAt    DateTime @default(now())
+
+  @@map("users")
+}
+
+// Email captured from the landing-page pre-register form.
+model Preregistration {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  @@map("preregistrations")
+}
+
+enum AnnouncementType {
+  URGENT
+  UPDATE
+  EVENT
+}
+
+model Announcement {
+  id        String           @id @default(uuid())
+  title     String
+  content   String
+  type      AnnouncementType @default(UPDATE)
+  createdAt DateTime         @default(now())
+
+  @@map("announcements")
+}
