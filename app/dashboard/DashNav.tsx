@@ -2,18 +2,19 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bell, Users } from 'lucide-react';
+import { Bell, LayoutDashboard, Users } from 'lucide-react';
 
 const tabs = [
-  { href: '/admin', label: 'SIGNUPS', icon: Users },
+  { href: '/dashboard', label: 'OVERVIEW', icon: LayoutDashboard },
+  { href: '/dashboard/students', label: 'STUDENTS', icon: Users },
   { href: '/admin/announcements', label: 'ANNOUNCEMENTS', icon: Bell },
 ];
 
-export default function AdminTabs() {
+export default function DashNav() {
   const pathname = usePathname();
 
   return (
-    <div className="grid grid-cols-2 border border-acc-gray bg-acc-gray/20 p-2 rounded-sm mb-12 overflow-hidden">
+    <div className="grid grid-cols-3 border border-acc-gray bg-acc-gray/20 p-2 rounded-sm mb-12 overflow-hidden">
       {tabs.map((tab) => {
         const active = pathname === tab.href;
         const Icon = tab.icon;
@@ -21,7 +22,7 @@ export default function AdminTabs() {
           <Link
             key={tab.href}
             href={tab.href}
-            className={`relative p-3 md:p-5 transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 border border-transparent text-center ${
+            className={`relative p-3 md:p-5 transition-all duration-300 flex flex-col md:flex-row items-center justify-center gap-1.5 md:gap-3 border border-transparent text-center ${
               active
                 ? 'bg-bg border-acc-gray shadow-xl shadow-acc-dark/10'
                 : 'opacity-40 hover:opacity-70'
@@ -29,7 +30,7 @@ export default function AdminTabs() {
           >
             <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-brand' : 'text-acc-dark'}`} />
             <span
-              className={`text-[9px] sm:text-[11px] font-black tracking-wider sm:tracking-widest uppercase leading-tight ${
+              className={`text-[9px] md:text-[11px] font-black tracking-wider md:tracking-widest uppercase leading-tight ${
                 active ? 'text-text' : 'text-acc-dark'
               }`}
             >

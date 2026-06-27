@@ -90,7 +90,7 @@ export default function AdminPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 py-6 bg-bg/80 backdrop-blur-xl border-b border-acc-gray">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-bg/80 backdrop-blur-xl border-b border-acc-gray">
         <Link href="/" className="flex items-center gap-2 group transition-all">
           <span className="font-satoshi font-black italic text-brand tracking-tighter text-3xl select-none group-hover:scale-105 transition-transform">
             NYFS
@@ -114,7 +114,7 @@ export default function AdminPage() {
       </nav>
 
       {/* Main */}
-      <main className="pt-40 px-10 relative z-10 max-w-[1600px] mx-auto">
+      <main className="pt-32 md:pt-40 px-6 md:px-10 relative z-10 max-w-[1600px] mx-auto">
         {/* Header */}
         <div className="mb-16">
           <div className="flex items-center gap-4 mb-4">
@@ -123,7 +123,7 @@ export default function AdminPage() {
               ADMIN CONSOLE
             </span>
           </div>
-          <h1 className="text-7xl md:text-[10vw] font-black uppercase leading-[0.8] tracking-tighter text-text">
+          <h1 className="text-5xl sm:text-7xl md:text-[10vw] font-black uppercase leading-[0.8] tracking-tighter text-text">
             ADMIN.
           </h1>
         </div>
@@ -150,7 +150,7 @@ export default function AdminPage() {
             </p>
             <Link
               href="/"
-              className="inline-flex items-center gap-4 py-4 px-10 bg-text text-bg font-black text-xs tracking-widest uppercase hover:bg-brand transition-all"
+              className="inline-flex items-center gap-4 py-4 px-6 md:px-10 bg-text text-bg font-black text-xs tracking-widest uppercase hover:bg-brand transition-all"
             >
               <ArrowLeft className="w-4 h-4" /> RETURN TO HQ
             </Link>

@@ -19,7 +19,7 @@ export async function GET() {
 
   return NextResponse.json({
     rows: rows.map((r) => ({
-      id: r.id,
+      id: r.id.toString(),
       title: r.title,
       content: r.content,
       type: r.type,

@@ -15,7 +15,7 @@ export type AnnouncementRow = {
 const VALID_TYPES: AnnouncementType[] = ['URGENT', 'UPDATE', 'EVENT'];
 const TITLE_MAX = 200;
 const CONTENT_MAX = 5000;
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const ID_RE = /^\d+$/;
 
 export async function GET() {
   const auth = await verifyAdmin();
@@ -30,7 +30,7 @@ export async function GET() {
 
   return Response.json({
     rows: rows.map((r) => ({
-      id: r.id,
+      id: r.id.toString(),
       title: r.title,
       content: r.content,
       type: r.type,
@@ -78,7 +78,7 @@ export async function POST(request: Request) {
   return Response.json(
     {
       row: {
-        id: row.id,
+        id: row.id.toString(),
         title: row.title,
         content: row.content,
         type: row.type,
@@ -96,12 +96,12 @@ export async function DELETE(request: Request) {
   }
 
   const id = new URL(request.url).searchParams.get('id');
-  if (!id || !UUID_RE.test(id)) {
+  if (!id || !ID_RE.test(id)) {
     return Response.json({ error: 'Invalid id' }, { status: 400 });
   }
 
   try {
-    await prisma.announcement.delete({ where: { id } });
+    await prisma.announcement.delete({ where: { id: BigInt(id) } });
   } catch {
     return Response.json({ error: 'Internal error' }, { status: 500 });
   }

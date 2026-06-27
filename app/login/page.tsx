@@ -60,7 +60,7 @@ export default function LoginPage() {
         <div className="noise" />
       </div>
 
-      <main className="min-h-screen flex items-center justify-center px-10 relative z-10">
+      <main className="min-h-screen flex items-center justify-center px-6 md:px-10 relative z-10">
         <div className="w-full max-w-md">
           {/* Header */}
           <div className="text-center mb-10">
@@ -74,7 +74,7 @@ export default function LoginPage() {
           </div>
 
           {/* Login Card */}
-          <div className="bg-bg border-4 border-text p-10 shadow-[16px_16px_0_0_var(--menthe)] relative overflow-hidden">
+          <div className="bg-bg border-4 border-text p-6 md:p-10 shadow-[16px_16px_0_0_var(--menthe)] relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10">
                <ShieldCheck className="w-12 h-12 text-brand" />
             </div>

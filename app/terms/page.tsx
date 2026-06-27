@@ -7,7 +7,7 @@ import { ArrowLeft, FileText } from "lucide-react";
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-bg text-text font-mono selection:bg-brand selection:text-dark-teal transition-colors duration-500">
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 py-6 bg-bg/80 backdrop-blur-xl border-b border-acc-gray transition-all duration-300">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-bg/80 backdrop-blur-xl border-b border-acc-gray transition-all duration-300">
         <Link href="/" className="flex items-center gap-2 group transition-all">
           <span className="font-satoshi font-black italic text-brand tracking-tighter text-3xl select-none group-hover:scale-105 transition-transform">
             NYFS
@@ -18,7 +18,7 @@ export default function TermsPage() {
         </Link>
       </nav>
 
-      <main className="pt-40 pb-20 px-10 max-w-4xl mx-auto">
+      <main className="pt-32 md:pt-40 pb-20 px-6 md:px-10 max-w-4xl mx-auto">
         <div className="mb-20">
           <FileText className="w-16 h-16 text-orange mb-6" />
           <h1 className="text-6xl md:text-8xl font-mono font-black uppercase leading-none tracking-tighter text-text">
@@ -59,7 +59,7 @@ export default function TermsPage() {
         </div>
       </main>
 
-      <footer className="py-20 px-10 bg-bg border-t border-acc-gray text-center">
+      <footer className="py-20 px-6 md:px-10 bg-bg border-t border-acc-gray text-center">
          <p className="font-mono text-acc-dark text-[10px] tracking-widest uppercase">
             © 2026 NORTHEAST YOUNG FOUNDERS SUMMIT // BUILDING THE FUTURE
          </p>

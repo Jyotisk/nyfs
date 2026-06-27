@@ -7,29 +7,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// A registered participant. Merges what used to live in Supabase's
-// auth.users (email + password) and the separate `profiles` table.
+// Admin login accounts only. Created via the seed script, never by the
+// public registration form.
 model User {
-  id           String   @id @default(uuid())
+  id           BigInt   @id @default(autoincrement())
   email        String   @unique
   passwordHash String
-  fullName     String?
-  whatsapp     String?
-  institution  String?
-  grade        String?
-  city         String?
-  motivation   String?
-  problem      String?
-  paymentId    String?
-  orderId      String?
   createdAt    DateTime @default(now())
 
   @@map("users")
 }
 
+// Public event registrations. Standalone — the registration form writes
+// only here. No account / login is created.
+model Registration {
+  id          BigInt   @id @default(autoincrement())
+  fullName    String?
+  email       String   @unique
+  whatsapp    String?  @unique
+  institution String?
+  grade       String?
+  city        String?
+  motivation  String?
+  problem     String?
+  createdAt   DateTime @default(now())
+
+  @@map("registrations")
+}
+
 // Email captured from the landing-page pre-register form.
 model Preregistration {
-  id        String   @id @default(uuid())
+  id        BigInt   @id @default(autoincrement())
   email     String   @unique
   createdAt DateTime @default(now())
 
@@ -43,7 +51,7 @@ enum AnnouncementType {
 }
 
 model Announcement {
-  id        String           @id @default(uuid())
+  id        BigInt           @id @default(autoincrement())
   title     String
   content   String
   type      AnnouncementType @default(UPDATE)

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
-import { ArrowDown, ArrowUp, Download, Search } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ArrowDown, ArrowUp, Download, Eye, Search, X } from 'lucide-react';
 
 export type SignupRow = {
   id: string;
@@ -26,8 +26,6 @@ const columns: { key: SortKey | null; label: string; field: keyof SignupRow; wid
   { key: 'institution', label: 'SCHOOL / COLLEGE', field: 'institution' },
   { key: null, label: 'GRADE', field: 'grade' },
   { key: 'city', label: 'CITY', field: 'city' },
-  { key: null, label: 'MOTIVATION', field: 'motivation', wide: true },
-  { key: null, label: 'PROBLEM', field: 'problem', wide: true },
   { key: 'created_at', label: 'SIGNED UP', field: 'created_at' },
 ];
 
@@ -93,10 +91,20 @@ function formatDate(iso: string): string {
 
 export default function SignupsTable({ rows }: { rows: SignupRow[] }) {
   const [query, setQuery] = useState('');
+  const [selected, setSelected] = useState<SignupRow | null>(null);
   const [sort, setSort] = useState<{ key: SortKey; dir: SortDir }>({
     key: 'created_at',
     dir: 'desc',
   });
+
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelected(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selected]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -180,13 +188,16 @@ export default function SignupsTable({ rows }: { rows: SignupRow[] }) {
                   </th>
                 );
               })}
+              <th className="px-4 py-4 text-[10px] font-black tracking-widest uppercase text-acc-dark border-b border-acc-gray whitespace-nowrap text-right">
+                DETAILS
+              </th>
             </tr>
           </thead>
           <tbody>
             {filtered.length === 0 ? (
               <tr>
                 <td
-                  colSpan={columns.length}
+                  colSpan={columns.length + 1}
                   className="px-4 py-16 text-center text-xs font-black tracking-widest uppercase text-acc-dark/60"
                 >
                   NO SIGNUPS FOUND
@@ -204,20 +215,87 @@ export default function SignupsTable({ rows }: { rows: SignupRow[] }) {
                     return (
                       <td
                         key={col.field}
-                        className={`px-4 py-4 text-xs font-mono text-text border-b border-acc-gray/60 align-top ${
-                          col.wide ? 'max-w-xs truncate' : 'whitespace-nowrap'
-                        }`}
-                        title={col.wide && typeof raw === 'string' ? raw : undefined}
+                        className="px-4 py-4 text-xs font-mono text-text border-b border-acc-gray/60 align-top whitespace-nowrap"
                       >
                         {display as string}
                       </td>
                     );
                   })}
+                  <td className="px-4 py-4 border-b border-acc-gray/60 align-top text-right whitespace-nowrap">
+                    <button
+                      type="button"
+                      onClick={() => setSelected(row)}
+                      className="inline-flex items-center gap-2 px-4 py-2 border border-brand text-brand font-black text-[10px] tracking-widest uppercase hover:bg-brand hover:text-white transition-all"
+                    >
+                      <Eye className="w-3 h-3" /> VIEW
+                    </button>
+                  </td>
                 </tr>
               ))
             )}
           </tbody>
         </table>
+      </div>
+
+      {selected && <DetailsModal row={selected} onClose={() => setSelected(null)} />}
+    </div>
+  );
+}
+
+function DetailField({ label, value, full = false }: { label: string; value: string | null; full?: boolean }) {
+  return (
+    <div className={full ? 'md:col-span-2' : ''}>
+      <span className="text-[10px] font-black tracking-widest uppercase text-acc-dark block mb-1">
+        {label}
+      </span>
+      <p className="text-sm font-mono text-text whitespace-pre-wrap break-words">{value || '—'}</p>
+    </div>
+  );
+}
+
+function DetailsModal({ row, onClose }: { row: SignupRow; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-bg border border-acc-gray shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="sticky top-0 flex items-start justify-between gap-4 p-8 border-b border-acc-gray bg-bg">
+          <div>
+            <span className="text-[10px] font-black tracking-[0.3em] uppercase text-brand block mb-2">
+              REGISTRATION DETAILS
+            </span>
+            <h2 className="text-2xl font-black uppercase tracking-tighter text-text">
+              {row.full_name || '—'}
+            </h2>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex-shrink-0 p-2 text-acc-dark hover:text-brand transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <DetailField label="Full Name" value={row.full_name} />
+          <DetailField label="Email" value={row.email} />
+          <DetailField label="WhatsApp" value={row.whatsapp} />
+          <DetailField label="City" value={row.city} />
+          <DetailField label="School / College" value={row.institution} />
+          <DetailField label="Grade / Year" value={row.grade} />
+          <DetailField label="Signed Up" value={formatDate(row.created_at)} />
+          <div className="hidden md:block" />
+          <DetailField label="Motivation" value={row.motivation} full />
+          <DetailField label="Problem to Solve" value={row.problem} full />
+        </div>
       </div>
     </div>
   );

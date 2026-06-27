@@ -25,6 +25,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
   }
 
-  await setSessionCookie({ sub: user.id, email: user.email });
+  await setSessionCookie({ sub: String(user.id), email: user.email });
   return NextResponse.json({ success: true });
 }

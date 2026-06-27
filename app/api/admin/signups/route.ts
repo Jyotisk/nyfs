@@ -22,7 +22,7 @@ export async function GET() {
     return Response.json({ error: auth.error }, { status: auth.status });
   }
 
-  const users = await prisma.user.findMany({
+  const registrations = await prisma.registration.findMany({
     orderBy: { createdAt: 'desc' },
     select: {
       id: true,
@@ -38,17 +38,17 @@ export async function GET() {
     },
   });
 
-  const rows: SignupRow[] = users.map((u) => ({
-    id: u.id,
-    full_name: u.fullName,
-    email: u.email,
-    whatsapp: u.whatsapp,
-    institution: u.institution,
-    grade: u.grade,
-    city: u.city,
-    motivation: u.motivation,
-    problem: u.problem,
-    created_at: u.createdAt.toISOString(),
+  const rows: SignupRow[] = registrations.map((r) => ({
+    id: r.id.toString(),
+    full_name: r.fullName,
+    email: r.email,
+    whatsapp: r.whatsapp,
+    institution: r.institution,
+    grade: r.grade,
+    city: r.city,
+    motivation: r.motivation,
+    problem: r.problem,
+    created_at: r.createdAt.toISOString(),
   }));
 
   return Response.json({ rows });
