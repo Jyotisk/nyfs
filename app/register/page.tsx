@@ -119,9 +119,6 @@ export default function RegisterPage() {
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" /> HOME
           </Link>
         </div>
-        <Link href="/login" className="font-general font-black text-[11px] tracking-[0.2em] uppercase text-navy-deep/70 hover:text-blue-bright transition-colors">
-          LOGIN
-        </Link>
       </nav>
 
       {/* Main */}

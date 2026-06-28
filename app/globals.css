@@ -78,7 +78,34 @@ h1, h2, h3, .display {
   letter-spacing: -0.02em;
 }
 
-/* Animated gradient text (home-page brand words). */
+/* ───────────────────────────────────────────────────────────
+   Brand gradient — the signature NYFS ramp (teal-mint → pale lime).
+   Reusable across the site as a background or as clipped text.
+   ─────────────────────────────────────────────────────────── */
+:root {
+  --grad-brand: linear-gradient(
+    90deg,
+    #6bd4b5 0%,
+    #8cddb4 25%,
+    #a7e6b4 50%,
+    #c2eeb6 75%,
+    #e0f5ba 100%
+  );
+}
+
+.bg-grad-brand {
+  background-image: var(--grad-brand);
+}
+
+.text-grad-brand {
+  background-image: var(--grad-brand);
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Animated version of the brand gradient for headings. */
 @keyframes shimmer {
   to {
     background-position: 200% center;
@@ -87,11 +114,11 @@ h1, h2, h3, .display {
 .shimmer-text {
   background-image: linear-gradient(
     90deg,
-    var(--menthe) 0%,
-    var(--verveine) 25%,
-    var(--menthe) 50%,
-    var(--verveine) 75%,
-    var(--menthe) 100%
+    #6bd4b5,
+    #a7e6b4,
+    #e0f5ba,
+    #a7e6b4,
+    #6bd4b5
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

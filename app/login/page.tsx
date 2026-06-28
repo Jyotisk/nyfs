@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { ArrowLeft, Key, Mail, ShieldCheck, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -124,7 +123,7 @@ export default function LoginPage() {
                 </button>
               </div>
 
-              <button type="submit" disabled={isLoading} className="w-full py-6 bg-brand text-bg border-4 border-text font-black text-xs tracking-widest uppercase hover:bg-text hover:text-bg transition-all shadow-[8px_8px_0_0_var(--verveine)] flex items-center justify-center gap-4 group disabled:opacity-50">
+              <button type="submit" disabled={isLoading} className="w-full py-6 bg-grad-brand text-dark-teal border-4 border-text font-black text-xs tracking-widest uppercase hover:opacity-90 transition-all shadow-[8px_8px_0_0_var(--verveine)] flex items-center justify-center gap-4 group disabled:opacity-50">
                 {isLoading ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent animate-spin" />
                 ) : (

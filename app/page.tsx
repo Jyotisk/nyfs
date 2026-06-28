@@ -121,7 +121,7 @@ export default function Home() {
       {/* Scroll progress bar */}
       <motion.div
         style={{ scaleX: scrollYProgress }}
-        className="fixed top-0 left-0 right-0 h-1 bg-brand origin-left z-[60]"
+        className="fixed top-0 left-0 right-0 h-1 bg-grad-brand origin-left z-[60]"
       />
 
       {/* Animated ambient glows */}
@@ -152,9 +152,6 @@ export default function Home() {
           <img src="/logo.png" alt="NYFS" className="h-12 md:h-16 w-auto select-none group-hover:scale-105 transition-transform" />
         </Link>
         <div className="flex items-center gap-4 sm:gap-8 md:gap-12">
-          <Link href="/login" className="nav-link font-mono font-black text-[11px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-acc-dark hover:text-brand transition-colors">
-            LOGIN
-          </Link>
           <Link href="/register" className="px-4 sm:px-6 md:px-10 py-2.5 sm:py-3 border-2 border-brand text-brand font-mono font-black text-[11px] sm:text-xs tracking-wider sm:tracking-widest uppercase hover:bg-brand hover:text-white transition-all rounded-sm active:scale-95 inline-flex items-center gap-2">
             REGISTER <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </Link>
@@ -233,7 +230,7 @@ export default function Home() {
             <motion.div variants={fadeUp} className="pt-6">
               <Link
                 href="/register"
-                className="group inline-flex items-center gap-3 px-6 md:px-10 py-5 bg-brand text-bg border-4 border-text font-black text-xs tracking-widest uppercase hover:-translate-y-1 transition-all shadow-[8px_8px_0_0_var(--verveine)]"
+                className="group inline-flex items-center gap-3 px-6 md:px-10 py-5 bg-grad-brand text-dark-teal border-4 border-text font-black text-xs tracking-widest uppercase hover:-translate-y-1 transition-all shadow-[8px_8px_0_0_var(--verveine)]"
               >
                 REGISTER NOW
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -269,14 +266,14 @@ export default function Home() {
       </main>
 
       {/* ── MARQUEE TICKER ── */}
-      <div className="relative z-10 border-y-4 border-text bg-brand text-bg overflow-hidden py-5 -rotate-1 my-10">
+      <div className="relative z-10 border-y-4 border-text bg-grad-brand text-dark-teal overflow-hidden py-7 my-10">
         <div className="marquee-track">
           {[0, 1].map((dup) => (
             <span key={dup} className="flex items-center" aria-hidden={dup === 1}>
               {["IDEA → MVP → PITCH", "3 DAYS", "₹50,000 PRIZE POOL", "MENTOR-LED", "BUILD. PITCH. WIN.", "NORTHEAST INDIA"].map((t, i) => (
                 <span key={i} className="flex items-center text-2xl md:text-4xl font-black uppercase tracking-tighter">
                   <span className="px-8">{t}</span>
-                  <Zap className="w-6 h-6 fill-bg" />
+                  <Zap className="w-6 h-6 fill-dark-teal" />
                 </span>
               ))}
             </span>
@@ -345,17 +342,17 @@ export default function Home() {
 
                 {/* Content */}
                 <div className="p-8 flex-1 flex flex-col">
-                  <div className="flex items-center gap-4 text-[10px] text-acc-dark font-bold mb-4">
-                    <div className="flex items-center gap-1"><Calendar className="w-3 h-3 text-brand" /> {summit.date}</div>
+                  <div className="flex items-center gap-4 text-xs text-acc-dark font-bold mb-4">
+                    <div className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-brand" /> {summit.date}</div>
                     <div className="w-1 h-1 bg-acc-gray rounded-full" />
-                    <div className="flex items-center gap-1"><MapPin className="w-3 h-3 text-brand" /> {summit.location}</div>
+                    <div className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-brand" /> {summit.location}</div>
                   </div>
 
-                  <h3 className="text-2xl font-black uppercase mb-4 leading-tight tracking-tight text-text group-hover:text-brand transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase mb-4 leading-tight tracking-tight text-text group-hover:text-brand transition-colors">
                     {summit.title}
                   </h3>
 
-                  <p className="text-sm text-text leading-relaxed mb-6 italic opacity-90">
+                  <p className="text-base text-text leading-relaxed mb-6 italic opacity-90">
                     &quot;{summit.desc}&quot;
                   </p>
 
@@ -369,22 +366,22 @@ export default function Home() {
                       className="overflow-hidden border-t border-acc-gray mt-6 pt-6 mb-8"
                     >
                       <div className="mb-6">
-                         <span className="text-[10px] font-black text-brand tracking-widest uppercase mb-4 block underline">HIGHLIGHTS</span>
-                         <ul className="space-y-2">
+                         <span className="text-sm font-black text-brand tracking-widest uppercase mb-4 block underline">HIGHLIGHTS</span>
+                         <ul className="space-y-3">
                             {summit.details.highlights.map((h, idx) => (
-                               <li key={idx} className="text-xs text-acc-dark flex items-center gap-2">
-                                  <Zap className="w-2 h-2 text-brand fill-brand" /> {h}
+                               <li key={idx} className="text-base text-acc-dark flex items-center gap-2 font-medium">
+                                  <Zap className="w-3 h-3 text-brand fill-brand shrink-0" /> {h}
                                </li>
                             ))}
                          </ul>
                       </div>
                       <div>
-                         <span className="text-[10px] font-black text-brand tracking-widest uppercase mb-4 block underline">SCHEDULE</span>
+                         <span className="text-sm font-black text-brand tracking-widest uppercase mb-4 block underline">SCHEDULE</span>
                          <ul className="space-y-4">
                             {summit.details.sessions.map((s, idx) => (
                                <li key={idx} className="border-l-2 border-acc-gray pl-4 py-1">
-                                  <span className="text-[10px] text-acc-dark block font-black">{s.split(' - ')[0]}</span>
-                                  <span className="text-xs font-bold text-text">{s.split(' - ')[1]}</span>
+                                  <span className="text-xs text-acc-dark block font-black">{s.split(' - ')[0]}</span>
+                                  <span className="text-base font-bold text-text">{s.split(' - ')[1]}</span>
                                </li>
                             ))}
                          </ul>
@@ -419,6 +416,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── CALL TO ACTION ── */}
+      <section className="relative z-10 px-6 md:px-10 pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="max-w-7xl mx-auto bg-text text-bg border-4 border-text overflow-hidden relative"
+        >
+          {/* gradient accent strip */}
+          <div className="h-2 w-full bg-grad-brand" />
+
+          <div className="p-10 md:p-20 flex flex-col items-center text-center">
+            <span className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-grad-brand text-dark-teal font-mono font-black text-[11px] md:text-xs tracking-[0.25em] uppercase">
+              <Zap className="w-4 h-4 fill-dark-teal" /> LIMITED SEATS
+            </span>
+
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-mono font-black uppercase leading-[0.9] tracking-tighter mb-6">
+              YOUR SEAT WON&apos;T<br />
+              <span className="text-grad-brand">WAIT.</span>
+            </h2>
+
+            <p className="font-general text-base md:text-xl text-bg/70 max-w-xl mb-12 leading-relaxed">
+              Only a limited number of spots for the next NYFS cohort. Lock yours in before
+              registrations close.
+            </p>
+
+            <Link
+              href="/register"
+              className="group inline-flex items-center gap-3 px-10 md:px-14 py-5 md:py-6 bg-grad-brand text-dark-teal border-4 border-bg font-mono font-black text-sm md:text-base tracking-widest uppercase hover:-translate-y-1 transition-all active:scale-95"
+            >
+              REGISTER NOW
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <p className="mt-6 font-mono text-[10px] md:text-xs tracking-widest uppercase text-bg/50">
+              29 JULY 2026 · GUWAHATI · FREE ENTRY
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
       <footer className="relative z-10 py-20 px-6 md:px-10 bg-bg border-t border-acc-gray">
          <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -439,6 +478,9 @@ export default function Home() {
                </Link>
                <Link href="/terms" className="font-mono text-acc-dark text-[10px] font-black tracking-widest uppercase hover:text-brand transition-colors">
                   TERMS
+               </Link>
+               <Link href="/login" className="font-mono text-acc-dark text-[10px] font-black tracking-widest uppercase hover:text-brand transition-colors">
+                  ADMIN LOGIN
                </Link>
             </nav>
          </motion.div>

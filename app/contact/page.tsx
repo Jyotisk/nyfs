@@ -156,7 +156,7 @@ export default function ContactPage() {
           </div>
           <Link
             href="/register"
-            className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-brand text-bg border-4 border-brand font-mono font-black text-xs tracking-widest uppercase hover:bg-bg hover:text-text transition-all active:scale-95 shrink-0"
+            className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-grad-brand text-dark-teal border-4 border-bg font-mono font-black text-xs tracking-widest uppercase hover:opacity-90 transition-all active:scale-95 shrink-0"
           >
             REGISTER NOW
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
