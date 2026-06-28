@@ -110,7 +110,7 @@ export default function RegisterPage() {
         <div className="flex items-center gap-6">
           <Link href="/" className="select-none hover:scale-105 transition-transform">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="NYFS" className="h-11 md:h-14 w-auto" />
+            <img src="/logo.png" alt="NYFS" className="h-14 md:h-16 w-auto" />
           </Link>
           <Link
             href="/"

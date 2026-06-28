@@ -143,10 +143,10 @@ export default function AdminAnnouncementsPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-bg/80 backdrop-blur-xl border-b border-acc-gray">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-3 bg-bg/80 backdrop-blur-xl border-b border-acc-gray">
         <Link href="/" className="flex items-center gap-2 group transition-all">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="NYFS" className="h-12 md:h-16 w-auto select-none group-hover:scale-105 transition-transform" />
+          <img src="/logo.png" alt="NYFS" className="h-16 md:h-20 w-auto select-none group-hover:scale-105 transition-transform" />
         </Link>
         <div className="flex items-center gap-8">
           {status.kind === 'ready' && (

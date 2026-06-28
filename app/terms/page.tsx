@@ -7,10 +7,10 @@ import { ArrowLeft, FileText } from "lucide-react";
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-bg text-text font-mono selection:bg-brand selection:text-dark-teal transition-colors duration-500">
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-bg/80 backdrop-blur-xl border-b border-acc-gray transition-all duration-300">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-3 bg-bg/80 backdrop-blur-xl border-b border-acc-gray transition-all duration-300">
         <Link href="/" className="flex items-center gap-2 group transition-all">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="NYFS" className="h-12 md:h-16 w-auto select-none group-hover:scale-105 transition-transform" />
+          <img src="/logo.png" alt="NYFS" className="h-16 md:h-20 w-auto select-none group-hover:scale-105 transition-transform" />
         </Link>
         <Link href="/" className="font-mono font-black text-xs tracking-widest uppercase hover:text-brand transition-colors flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" /> BACK TO HOME

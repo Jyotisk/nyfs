@@ -23,7 +23,7 @@ const summits = [
   },
   {
     title: "DAY 2: Build & Validate",
-    date: "THUR, 30 JULY 2026",
+    date: "THU, 30 JULY 2026",
     location: "Iris - The Boutique Hotel",
     desc: "Day 2 is where ideas meet reality. You’ll test your idea with users, create a working MVP using no-code tools, and refine it through feedback. You’ll also learn how to turn your work into a compelling pitch and build a deck that actually wins over judges and investors.",
     image: "/2.jpeg",
@@ -145,11 +145,11 @@ export default function Home() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: EASE }}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-bg/70 backdrop-blur-xl border-b border-acc-gray"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-3 bg-bg/70 backdrop-blur-xl border-b border-acc-gray"
       >
         <Link href="/" className="flex items-center gap-2 group transition-all">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="NYFS" className="h-12 md:h-16 w-auto select-none group-hover:scale-105 transition-transform" />
+          <img src="/logo.png" alt="NYFS" className="h-16 md:h-20 w-auto select-none group-hover:scale-105 transition-transform" />
         </Link>
         <div className="flex items-center gap-4 sm:gap-8 md:gap-12">
           <Link href="/register" className="px-4 sm:px-6 md:px-10 py-2.5 sm:py-3 border-2 border-brand text-brand font-mono font-black text-[11px] sm:text-xs tracking-wider sm:tracking-widest uppercase hover:bg-brand hover:text-white transition-all rounded-sm active:scale-95 inline-flex items-center gap-2">
@@ -451,9 +451,9 @@ export default function Home() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
 
-            <p className="mt-6 font-mono text-[10px] md:text-xs tracking-widest uppercase text-bg/50">
-              29 JULY 2026 · GUWAHATI · FREE ENTRY
-            </p>
+            {/* <p className="mt-6 font-mono text-[10px] md:text-xs tracking-widest uppercase text-bg/50">
+              29 JUNE 2026 · GUWAHATI · FREE ENTRY
+            </p> */}
           </div>
         </motion.div>
       </section>

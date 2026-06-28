@@ -43,10 +43,10 @@ export default function ContactPage() {
       </div>
 
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-bg/70 backdrop-blur-xl border-b border-acc-gray transition-all duration-300">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-3 bg-bg/70 backdrop-blur-xl border-b border-acc-gray transition-all duration-300">
         <Link href="/" className="flex items-center gap-2 group transition-all">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="NYFS" className="h-12 md:h-16 w-auto select-none group-hover:scale-105 transition-transform" />
+          <img src="/logo.png" alt="NYFS" className="h-16 md:h-20 w-auto select-none group-hover:scale-105 transition-transform" />
         </Link>
         <Link href="/" className="group font-mono font-black text-xs tracking-widest uppercase hover:text-brand transition-colors flex items-center gap-2">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> BACK TO HOME
