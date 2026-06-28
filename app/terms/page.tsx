@@ -9,9 +9,8 @@ export default function TermsPage() {
     <div className="min-h-screen bg-bg text-text font-mono selection:bg-brand selection:text-dark-teal transition-colors duration-500">
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-bg/80 backdrop-blur-xl border-b border-acc-gray transition-all duration-300">
         <Link href="/" className="flex items-center gap-2 group transition-all">
-          <span className="font-satoshi font-black italic text-brand tracking-tighter text-3xl select-none group-hover:scale-105 transition-transform">
-            NYFS
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="NYFS" className="h-12 md:h-16 w-auto select-none group-hover:scale-105 transition-transform" />
         </Link>
         <Link href="/" className="font-mono font-black text-xs tracking-widest uppercase hover:text-brand transition-colors flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" /> BACK TO HOME
@@ -43,17 +42,15 @@ export default function TermsPage() {
             </p>
           </section>
 
-          <section className="bg-white/70 backdrop-blur-2xl border-4 border-text p-8 shadow-[12px_12px_0_0_var(--verveine)]">
-            <h2 className="text-2xl font-black text-text uppercase mb-6 border-b-4 border-orange pb-2 inline-block">3. Payments & Fees</h2>
-            <p>
-              All fees are payable in Indian Rupees (INR) unless otherwise specified. Payments are processed via secure third-party payment gateways.
-            </p>
-          </section>
-
           <section className="bg-white/70 backdrop-blur-2xl border-4 border-text p-8 shadow-[12px_12px_0_0_#000]">
-            <h2 className="text-2xl font-black text-text uppercase mb-6 border-b-4 border-brand pb-2 inline-block">4. Code of Conduct</h2>
+            <h2 className="text-2xl font-black text-text uppercase mb-6 border-b-4 border-brand pb-2 inline-block">3. Code of Conduct</h2>
             <p>
               Attendees are expected to behave professionally and respectfully. NYFS reserves the right to remove any individual whose behavior is deemed inappropriate or disruptive.
+            </p>
+            <p>
+              Also attendees are supposed to attend all the 3 days orelse they wont get any certificate or
+              else they wont get any certificate or
+              recognition
             </p>
           </section>
         </div>

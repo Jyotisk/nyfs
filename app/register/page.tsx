@@ -108,8 +108,9 @@ export default function RegisterPage() {
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-3 bg-gray-light/80 backdrop-blur-2xl border-b border-navy-deep/10">
         <div className="flex items-center gap-6">
-          <Link href="/" className="font-general font-black italic text-blue-bright tracking-tighter text-2xl md:text-3xl select-none hover:scale-105 transition-transform">
-            NYFS
+          <Link href="/" className="select-none hover:scale-105 transition-transform">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="NYFS" className="h-11 md:h-14 w-auto" />
           </Link>
           <Link
             href="/"

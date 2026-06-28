@@ -8,44 +8,55 @@ import Link from "next/link";
 
 const summits = [
   {
-    title: "DAY 1: IDEA_GENESIS",
-    date: "SAT, 14 MAR 2026",
-    location: "GUWAHATI_CENTRE",
+    title: "DAY 1: Ideate",
+    date: "WED, 29 JULY 2026",
+    location: "Iris - The Boutique Hotel",
     desc: "You don’t need an idea to start. On Day 1, you’ll break down how startups actually work, spot real problems around you, turn them into ideas, test them, and find your team. By the end, you’ll have a solid idea you actually want to take forward.",
-    image: "/startup_workshop_nyfs_1776185402143.png",
+    image: "/3.webp",
     code: "EVNT_DAY_01",
     details: {
-      highlights: ["Problem Scouting", "Team Formation", "Idea Validation"],
-      sessions: ["09:00 - The Blueprint", "13:00 - Networking Lunch", "15:00 - Ideation Sprints"],
+      highlights: ["Entrepreneurship Fundamentals", "Problem Scouting", "Team Formation", "Idea Validation"],
+      sessions: ["10:00 AM — Registration & Networking", "10:30 AM — Opening Ceremony & Introduction to Entrepreneurship",
+         "12:00 PM — Problem Scouting & Idea Validation Workshop", "1:00 PM — Networking Lunch","2:00 PM — Team Formation & IdeationSprint",
+        "4:30 PM — Team Discussions & Mentor Feedback","5:30 PM — Day Wrap-up","5:30–6:00 PM — Networking & Departure" ],
     },
   },
   {
-    title: "DAY 2: MVP_BUILD",
-    date: "SUN, 15 MAR 2026",
-    location: "GUWAHATI_CENTRE",
+    title: "DAY 2: Build & Validate",
+    date: "THUR, 30 JULY 2026",
+    location: "Iris - The Boutique Hotel",
     desc: "Day 2 is where ideas meet reality. You’ll test your idea with users, create a working MVP using no-code tools, and refine it through feedback. You’ll also learn how to turn your work into a compelling pitch and build a deck that actually wins over judges and investors.",
-    image: "/entrepreneurship_expo_nyfs_1776185434460.png",
+    image: "/2.jpeg",
     code: "EVNT_DAY_02",
     details: {
-      highlights: ["MVP Engineering", "User Feedback Loop", "Pitch Architecture"],
-      sessions: ["10:00 - No-Code Lab", "14:00 - Feedback Sprints", "17:00 - Deck Workshop"],
+      highlights: ["MVP Development", "Business Model Canvas", "Branding & Marketing", "Pitch Deck Creation"],
+      sessions: ["10:00 AM — Arrival & Networking", "10:30 AM — MVP & Business Model Workshop", "12:30 PM — Branding, Marketing & Finance Sessions",
+        "1:30 PM — Networking Lunch","2:30 PM — Pitch Deck Workshop","4:00 PM — Team Working Session & Mentor Reviews","5:30 PM — Day Wrap-up",
+        "5:30–6:00 PM — Networking & Departure"
+      ],
     },
   },
   {
-    title: "DAY 3: THE_PITCH",
-    date: "MON, 16 MAR 2026",
-    location: "GUWAHATI_CENTRE",
+    title: "DAY 3: Pitch & Win",
+    date: "FRI, 31 JULY 2026",
+    location: "Iris - The Boutique Hotel",
     desc: "Day 3 is D-DAY. You’ll refine your pitch, demo your MVP, and face a panel of founders and operators in a high-pressure, Shark Tank-style final round. This is where you prove what you’ve built.",
-    image: "/founder_workspace_render_1776181552224.png",
+    image: "/1.webp",
     code: "EVNT_DAY_03",
     details: {
-      highlights: ["Shark Tank Round", "Live MVP Demos", "Investor Feedback"],
-      sessions: ["10:00 - Final Polishing", "14:00 - The Big Pitch", "18:00 - Awards Ceremony"],
+      highlights: ["Final Mentorship", "Pitch Competition", "Awards Ceremony", "Founder Networking"],
+      sessions: ["10:00 AM — Arrival & Networking", "10:30 AM — Pitching Masterclass & Final Preparations & Mentor Feedback & Practice", 
+        "12:30 PM — Networking Lunch", "1:30 PM — Startup Pitch Competition Begins", "4:30 PM — Judges' Deliberation", "5:00 PM — Awards Ceremony & Closing Remarks",
+        "5:30–6:00 PM — Networking & Departure"
+      ],
     },
   },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+// Countdown target — the event date.
+const EVENT_DATE = new Date("2026-07-29T00:00:00").getTime();
 
 const container: Variants = {
   hidden: {},
@@ -64,7 +75,7 @@ const lineReveal: Variants = {
 
 export default function Home() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [countdown, setCountdown] = useState("");
+  const [countdown, setCountdown] = useState("30 DAYS  00:00:00");
   const quoteRef = useRef<HTMLDivElement>(null);
 
   // Smooth scrolling (scoped to this page; destroyed on unmount).
@@ -91,15 +102,17 @@ export default function Home() {
   const quoteY = useTransform(quoteProgress, [0, 1], [60, -60]);
 
   useEffect(() => {
-    const target = new Date("March 14, 2026 09:00:00").getTime();
-    const timer = setInterval(() => {
-      const distance = target - Date.now();
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      setCountdown(`${days}D:${hours}H:${minutes}M:${seconds}S`);
-    }, 1000);
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const tick = () => {
+      const distance = Math.max(0, EVENT_DATE - Date.now());
+      const days = Math.floor(distance / 86_400_000);
+      const hours = Math.floor((distance % 86_400_000) / 3_600_000);
+      const minutes = Math.floor((distance % 3_600_000) / 60_000);
+      const seconds = Math.floor((distance % 60_000) / 1000);
+      setCountdown(`${days} DAYS  ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`);
+    };
+    tick();
+    const timer = setInterval(tick, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -135,9 +148,8 @@ export default function Home() {
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-6 bg-bg/70 backdrop-blur-xl border-b border-acc-gray"
       >
         <Link href="/" className="flex items-center gap-2 group transition-all">
-          <span className="font-satoshi font-black italic text-brand tracking-tighter text-3xl select-none group-hover:scale-105 transition-transform">
-            NYFS
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="NYFS" className="h-12 md:h-16 w-auto select-none group-hover:scale-105 transition-transform" />
         </Link>
         <div className="flex items-center gap-4 sm:gap-8 md:gap-12">
           <Link href="/login" className="nav-link font-mono font-black text-[11px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase text-acc-dark hover:text-brand transition-colors">
@@ -156,7 +168,7 @@ export default function Home() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
-            className="text-acc-gray font-mono font-bold text-xs tracking-[0.5em] uppercase mb-10 block"
+            className="text-black font-mono font-black text-xl md:text-2xl tracking-[0.25em] uppercase mb-10 block border-l-4 border-brand pl-4"
           >
             WHO WE ARE
           </motion.span>
@@ -188,10 +200,10 @@ export default function Home() {
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <motion.p variants={fadeUp} className="text-2xl font-bold leading-tight">
+            <motion.p variants={fadeUp} className="text-2xl md:text-3xl font-general font-bold leading-snug text-text">
               The Northeast Young Founders Summit (NYFS) is the premier platform for Gen Z entrepreneurs in Northeast India.
             </motion.p>
-            <motion.p variants={fadeUp} className="text-acc-dark leading-relaxed">
+            <motion.p variants={fadeUp} className="text-lg md:text-xl font-general font-medium text-acc-dark leading-relaxed">
               We bridge the gap between ambition and execution. Our programs are designed to provide young builders with the mindset, network, and tools they need to build ventures that solve real problems in our region and beyond.
             </motion.p>
 
@@ -203,8 +215,8 @@ export default function Home() {
                 className="bg-white/70 backdrop-blur-2xl border-4 border-text p-6 shadow-[8px_8px_0_0_var(--menthe)]"
               >
                 <Rocket className="w-8 h-8 text-orange mb-4" />
-                <h4 className="font-black uppercase mb-2">High Impact</h4>
-                <p className="text-xs text-acc-dark">Direct mentorship from industry leaders and successful founders.</p>
+                <h4 className="font-black uppercase mb-2 text-xl">High Impact</h4>
+                <p className="text-base font-general text-acc-dark leading-relaxed">Direct mentorship from industry leaders and successful founders.</p>
               </motion.div>
               <motion.div
                 variants={fadeUp}
@@ -213,8 +225,8 @@ export default function Home() {
                 className="bg-white/70 backdrop-blur-2xl border-4 border-text p-6 shadow-[8px_8px_0_0_var(--verveine)]"
               >
                 <Globe className="w-8 h-8 text-brand mb-4" />
-                <h4 className="font-black uppercase mb-2">Global Vision</h4>
-                <p className="text-xs text-acc-dark">Local solutions for global challenges through digital innovation.</p>
+                <h4 className="font-black uppercase mb-2 text-xl">Global Vision</h4>
+                <p className="text-base font-general text-acc-dark leading-relaxed">Local solutions for global challenges through digital innovation.</p>
               </motion.div>
             </div>
 
@@ -283,12 +295,12 @@ export default function Home() {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <motion.span variants={fadeUp} className="text-acc-dark font-bold text-xs tracking-[0.5em] uppercase mb-6 block border-l-2 border-brand pl-4">
+                <motion.span variants={fadeUp} className="text-black font-mono font-black text-xl md:text-2xl tracking-[0.25em] uppercase mb-6 block border-l-4 border-brand pl-4">
                   UPCOMING SCHEDULE
                 </motion.span>
                 <h2 className="text-6xl md:text-8xl font-black uppercase leading-[0.8] tracking-tighter text-text">
                   <motion.span variants={fadeUp} className="block">FLAGSHIP</motion.span>
-                  <motion.span variants={fadeUp} className="block shimmer-text">SUMMITS.</motion.span>
+                  <motion.span variants={fadeUp} className="block shimmer-text">SUMMIT.</motion.span>
                 </h2>
               </motion.div>
               <motion.div
