@@ -64,9 +64,9 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           {/* Header */}
           <div className="text-center mb-10">
-            <Link href="/dashboard" className="inline-flex items-center gap-2 text-zinc-400 hover:text-brand transition-colors group mb-8">
+            <Link href="/" className="inline-flex items-center gap-2 text-zinc-400 hover:text-brand transition-colors group mb-8">
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span className="font-bold text-[10px] tracking-widest uppercase">BACK TO HQ</span>
+              <span className="font-bold text-[10px] tracking-widest uppercase">BACK TO HOME</span>
             </Link>
             <h1 className="text-6xl font-black uppercase tracking-tighter text-text">
               LOGIN.
