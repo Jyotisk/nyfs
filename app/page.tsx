@@ -198,10 +198,10 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.p variants={fadeUp} className="text-2xl md:text-3xl font-general font-bold leading-snug text-text">
-              The Northeast Young Founders Summit (NYFS) is the premier platform for Gen Z entrepreneurs in Northeast India.
+              The Northeast Young Founders Summit is built on one belief: the next generation of great Indian companies doesn't have to come from Bangalore or Delhi. It can come from here.
             </motion.p>
             <motion.p variants={fadeUp} className="text-lg md:text-xl font-general font-medium text-acc-dark leading-relaxed">
-              We bridge the gap between ambition and execution. Our programs are designed to provide young builders with the mindset, network, and tools they need to build ventures that solve real problems in our region and beyond.
+              The talent was always here; the room to build it wasn't. NYFS is that room - a three-day bootcamp and pitch competition for Gen Z founders and first-time builders across Northeast India, where you'll learn how startups actually get built and pitch your own to mentors and investors on the final day.
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10">
@@ -212,8 +212,8 @@ export default function Home() {
                 className="bg-white/70 backdrop-blur-2xl border-4 border-text p-6 shadow-[8px_8px_0_0_var(--menthe)]"
               >
                 <Rocket className="w-8 h-8 text-orange mb-4" />
-                <h4 className="font-black uppercase mb-2 text-xl">High Impact</h4>
-                <p className="text-base font-general text-acc-dark leading-relaxed">Direct mentorship from industry leaders and successful founders.</p>
+                <h4 className="font-black uppercase mb-2 text-xl">THE NETWORK YOU LACKED</h4>
+                <p className="text-base font-general text-acc-dark leading-relaxed">The mentors, investors, and founders the region rarely puts in one room - now in one room, for you.</p>
               </motion.div>
               <motion.div
                 variants={fadeUp}
@@ -222,8 +222,8 @@ export default function Home() {
                 className="bg-white/70 backdrop-blur-2xl border-4 border-text p-6 shadow-[8px_8px_0_0_var(--verveine)]"
               >
                 <Globe className="w-8 h-8 text-brand mb-4" />
-                <h4 className="font-black uppercase mb-2 text-xl">Global Vision</h4>
-                <p className="text-base font-general text-acc-dark leading-relaxed">Local solutions for global challenges through digital innovation.</p>
+                <h4 className="font-black uppercase mb-2 text-xl">MADE FOR FIRST-TIMERS</h4>
+                <p className="text-base font-general text-acc-dark leading-relaxed">Built for people who've never pitched, never raised, never built before. Everyone starts somewhere; start here.</p>
               </motion.div>
             </div>
 
@@ -254,7 +254,7 @@ export default function Home() {
                   </motion.div>
                   <h2 className="text-4xl font-black uppercase mb-6 leading-none">THE NEW <br /> STANDARD.</h2>
                   <p className="text-acc-dark italic">
-                    &quot;NYFS isn&apos;t just an event; it&apos;s a movement. We are building an ecosystem where young founders don&apos;t just dream, they execute.&quot;
+                    "The standard used to be: have a good idea, then leave to build it.We're setting a new one good idea, and build it right here."
                   </p>
                   <div className="mt-10 pt-10 border-t border-acc-gray/20">
                      <p className="font-mono text-acc-dark text-xs font-black uppercase tracking-widest">Est. 2026 // Northeast India</p>
