@@ -18,13 +18,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Email and password are required.' }, { status: 400 });
   }
 
-  const user = await prisma.user.findUnique({ where: { email } });
-  // Always run a hash comparison shape to avoid leaking which emails exist.
-  const ok = user ? await verifyPassword(password, user.passwordHash) : false;
-  if (!user || !ok) {
-    return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
-  }
+  try {
+    const user = await prisma.user.findUnique({ where: { email } });
+    // Always run a hash comparison shape to avoid leaking which emails exist.
+    const ok = user ? await verifyPassword(password, user.passwordHash) : false;
+    if (!user || !ok) {
+      return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 });
+    }
 
-  await setSessionCookie({ sub: String(user.id), email: user.email });
-  return NextResponse.json({ success: true });
+    await setSessionCookie({ sub: String(user.id), email: user.email });
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    // Surfaces config problems (missing AUTH_SECRET / DATABASE_URL) in server logs.
+    console.error('[auth/login]', err);
+    return NextResponse.json({ error: 'Login is temporarily unavailable.' }, { status: 500 });
+  }
 }
