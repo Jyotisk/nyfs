@@ -2,18 +2,17 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bell, Users } from 'lucide-react';
+import { Users } from 'lucide-react';
 
 const tabs = [
   { href: '/admin', label: 'SIGNUPS', icon: Users },
-  { href: '/admin/announcements', label: 'ANNOUNCEMENTS', icon: Bell },
 ];
 
 export default function AdminTabs() {
   const pathname = usePathname();
 
   return (
-    <div className="grid grid-cols-2 border border-acc-gray bg-acc-gray/20 p-2 rounded-sm mb-12 overflow-hidden">
+    <div className="grid grid-cols-1 border border-acc-gray bg-acc-gray/20 p-2 rounded-sm mb-12 overflow-hidden">
       {tabs.map((tab) => {
         const active = pathname === tab.href;
         const Icon = tab.icon;

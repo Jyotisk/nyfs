@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowRight, Bell, Building2, CalendarClock, MapPin, Users } from 'lucide-react';
+import { ArrowRight, Building2, CalendarClock, MapPin, Users } from 'lucide-react';
 import DashShell from './DashShell';
 
 type Stats = {
@@ -192,19 +192,6 @@ export default function DashboardPage() {
                 </h3>
                 <p className="text-[10px] font-bold text-acc-dark uppercase tracking-widest">
                   Browse, search &amp; export the full list
-                </p>
-              </Link>
-
-              <Link
-                href="/admin/announcements"
-                className="block border border-acc-gray bg-bg p-6 hover:border-brand transition-colors group"
-              >
-                <Bell className="w-6 h-6 text-brand mb-4" />
-                <h3 className="text-xs font-black tracking-widest uppercase mb-1 group-hover:text-brand transition-colors">
-                  ANNOUNCEMENTS
-                </h3>
-                <p className="text-[10px] font-bold text-acc-dark uppercase tracking-widest">
-                  {status.stats.totalAnnouncements} published
                 </p>
               </Link>
             </section>

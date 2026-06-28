@@ -323,10 +323,10 @@ export default function Home() {
             {summits.map((summit, i) => (
               <motion.div
                 key={i}
-                initial={{ y: 60, opacity: 0 }}
+                initial={{ y: 40, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, ease: EASE, delay: i * 0.1 }}
-                viewport={{ once: true, amount: 0.15, margin: '0px 0px -10% 0px' }}
+                viewport={{ once: true, amount: 0.05 }}
                 whileHover={{ y: -8 }}
                 className={`group relative flex flex-col h-full bg-acc-gray/10 border border-acc-gray transition-colors duration-500 hover:shadow-2xl hover:shadow-brand/10 ${expandedIndex === i ? 'border-brand/50 ring-1 ring-brand/10' : 'hover:border-brand/30'}`}
               >
