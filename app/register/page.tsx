@@ -142,7 +142,7 @@ export default function RegisterPage() {
 
               {/* Header */}
               <div className="mb-12">
-                <span className="text-brand font-general font-bold text-xs tracking-[0.5em] uppercase mb-4 block">
+                <span className="text-brand font-general font-bold text-base tracking-[0.5em] uppercase mb-4 block">
                   NYFS 2026
                 </span>
                 <h1 className="text-[16vw] md:text-[clamp(4rem,12vw,9rem)] font-general font-black uppercase leading-[0.8] tracking-tighter text-text">

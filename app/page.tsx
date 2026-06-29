@@ -253,7 +253,7 @@ export default function Home() {
                     <Zap className="w-12 h-12 text-orange mb-6" />
                   </motion.div>
                   <h2 className="text-4xl font-black uppercase mb-6 leading-none">THE NEW <br /> STANDARD.</h2>
-                  <p className="text-acc-dark italic">
+                  <p className="text-acc-dark italic text-lg md:text-xl">
                     "The standard used to be: have a good idea, then leave to build it.We're setting a new one good idea, and build it right here."
                   </p>
                   <div className="mt-10 pt-10 border-t border-acc-gray/20">
@@ -348,12 +348,12 @@ export default function Home() {
                     <div className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-brand" /> {summit.location}</div>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-black uppercase mb-4 leading-tight tracking-tight text-text group-hover:text-brand transition-colors">
+                  <h3 className="text-2xl md:text-2.5xl font-black uppercase mb-4 leading-tight tracking-tight text-text group-hover:text-brand transition-colors">
                     {summit.title}
                   </h3>
 
                   <p className="text-base text-text leading-relaxed mb-6 italic opacity-90">
-                    &quot;{summit.desc}&quot;
+                    {summit.desc}
                   </p>
 
                   <AnimatePresence initial={false}>
@@ -440,7 +440,7 @@ export default function Home() {
 
             <p className="font-general text-base md:text-xl text-bg/70 max-w-xl mb-12 leading-relaxed">
               Only a limited number of spots for the next NYFS cohort. Lock yours in before
-              registrations close.
+              registrations close on <span className="font-mono font-black text-bg/90">22 JULY 2026</span>.
             </p>
 
             <Link

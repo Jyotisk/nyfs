@@ -45,12 +45,7 @@ export default function TermsPage() {
           <section className="bg-white/70 backdrop-blur-2xl border-4 border-text p-8 shadow-[12px_12px_0_0_#000]">
             <h2 className="text-2xl font-black text-text uppercase mb-6 border-b-4 border-brand pb-2 inline-block">3. Code of Conduct</h2>
             <p>
-              Attendees are expected to behave professionally and respectfully. NYFS reserves the right to remove any individual whose behavior is deemed inappropriate or disruptive.
-            </p>
-            <p>
-              Also attendees are supposed to attend all the 3 days orelse they wont get any certificate or
-              else they wont get any certificate or
-              recognition
+              Attendees are expected to behave professionally and respectfully throughout the summit. NYFS reserves the right to remove any individual whose behavior is disruptive or inappropriate. Full attendance is mandatory. Certificates and recognition are awarded only to those who attend all three days.
             </p>
           </section>
         </div>
