@@ -58,6 +58,8 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 // Countdown target — the event date.
 const EVENT_DATE = new Date("2026-07-29T00:00:00").getTime();
 
+const pad = (n: number) => String(n).padStart(2, "0");
+
 const container: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
@@ -75,7 +77,7 @@ const lineReveal: Variants = {
 
 export default function Home() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const [countdown, setCountdown] = useState("30 DAYS  00:00:00");
+  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const quoteRef = useRef<HTMLDivElement>(null);
 
   // Smooth scrolling (scoped to this page; destroyed on unmount).
@@ -102,14 +104,14 @@ export default function Home() {
   const quoteY = useTransform(quoteProgress, [0, 1], [20, -20]);
 
   useEffect(() => {
-    const pad = (n: number) => String(n).padStart(2, "0");
     const tick = () => {
       const distance = Math.max(0, EVENT_DATE - Date.now());
-      const days = Math.floor(distance / 86_400_000);
-      const hours = Math.floor((distance % 86_400_000) / 3_600_000);
-      const minutes = Math.floor((distance % 3_600_000) / 60_000);
-      const seconds = Math.floor((distance % 60_000) / 1000);
-      setCountdown(`${days} DAYS  ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`);
+      setTime({
+        days: Math.floor(distance / 86_400_000),
+        hours: Math.floor((distance % 86_400_000) / 3_600_000),
+        minutes: Math.floor((distance % 3_600_000) / 60_000),
+        seconds: Math.floor((distance % 60_000) / 1000),
+      });
     };
     tick();
     const timer = setInterval(tick, 1000);
@@ -373,14 +375,29 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: EASE }}
-                className="flex items-center gap-6"
+                className="flex flex-col md:items-end gap-3"
               >
-                 <div className="text-right hidden md:block">
-                    <span className="text-[10px] text-acc-dark block font-black mb-1">NEXT WORKSHOP IN</span>
-                    <span className="text-xl font-bold tracking-tighter text-text border border-acc-gray px-4 py-2 bg-acc-gray/10 tabular-nums">{countdown}</span>
+                 <span className="flex items-center gap-2 text-[10px] md:text-xs text-acc-dark font-black tracking-widest uppercase">
+                    SUMMIT BEGINS IN <Zap className="w-4 h-4 text-brand fill-brand animate-pulse" />
+                 </span>
+                 <div className="flex items-start gap-2 md:gap-3 tabular-nums">
+                    {[
+                      { v: time.days, l: "DAYS" },
+                      { v: time.hours, l: "HR" },
+                      { v: time.minutes, l: "MIN" },
+                      { v: time.seconds, l: "SEC" },
+                    ].map((u, i) => (
+                      <React.Fragment key={u.l}>
+                        {i > 0 && (
+                          <span className="text-3xl md:text-5xl font-black text-black leading-none">:</span>
+                        )}
+                        <div className="flex flex-col items-center">
+                          <span className="text-3xl md:text-5xl font-black tracking-tighter text-text leading-none">{pad(u.v)}</span>
+                          <span className="text-[8px] md:text-[10px] font-black tracking-widest uppercase text-acc-dark mt-1.5 md:mt-2">{u.l}</span>
+                        </div>
+                      </React.Fragment>
+                    ))}
                  </div>
-                 <div className="w-px h-12 bg-acc-gray" />
-                 <Zap className="w-8 h-8 text-brand animate-pulse" />
               </motion.div>
             </div>
           </div>
