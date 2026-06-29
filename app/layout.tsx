@@ -15,6 +15,9 @@ const bricolage = Bricolage_Grotesque({
 export const metadata: Metadata = {
   title: "Northeast Young Founders Summit - NYFS",
   description: "A 3-day high-octane mentorship summit for the next generation of founders in the Northeast.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
