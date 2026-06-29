@@ -13,7 +13,7 @@ const summits = [
     location: "Iris - The Boutique Hotel",
     desc: "You don’t need an idea to start. On Day 1, you’ll break down how startups actually work, spot real problems around you, turn them into ideas, test them, and find your team. By the end, you’ll have a solid idea you actually want to take forward.",
     image: "/3.webp",
-    code: "EVNT_DAY_01",
+    code: "DAY 01",
     details: {
       highlights: ["Entrepreneurship Fundamentals", "Problem Scouting", "Team Formation", "Idea Validation"],
       sessions: ["10:00 AM — Registration & Networking", "10:30 AM — Opening Ceremony & Introduction to Entrepreneurship",
@@ -27,7 +27,7 @@ const summits = [
     location: "Iris - The Boutique Hotel",
     desc: "Day 2 is where ideas meet reality. You’ll test your idea with users, create a working MVP using no-code tools, and refine it through feedback. You’ll also learn how to turn your work into a compelling pitch and build a deck that actually wins over judges and investors.",
     image: "/2.jpeg",
-    code: "EVNT_DAY_02",
+    code: "DAY 02",
     details: {
       highlights: ["MVP Development", "Business Model Canvas", "Branding & Marketing", "Pitch Deck Creation"],
       sessions: ["10:00 AM — Arrival & Networking", "10:30 AM — MVP & Business Model Workshop", "12:30 PM — Branding, Marketing & Finance Sessions",
@@ -42,7 +42,7 @@ const summits = [
     location: "Iris - The Boutique Hotel",
     desc: "Day 3 is D-DAY. You’ll refine your pitch, demo your MVP, and face a panel of founders and operators in a high-pressure, Shark Tank-style final round. This is where you prove what you’ve built.",
     image: "/1.webp",
-    code: "EVNT_DAY_03",
+    code: "DAY 03",
     details: {
       highlights: ["Final Mentorship", "Pitch Competition", "Awards Ceremony", "Founder Networking"],
       sessions: ["10:00 AM — Arrival & Networking", "10:30 AM — Pitching Masterclass & Final Preparations & Mentor Feedback & Practice", 
@@ -287,24 +287,24 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
               <motion.div
-                variants={container}
-                initial="hidden"
-                whileInView="show"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.7, ease: EASE }}
               >
-                <motion.span variants={fadeUp} className="text-black font-mono font-black text-xl md:text-2xl tracking-[0.25em] uppercase mb-6 block border-l-4 border-brand pl-4">
+                <span className="text-black font-mono font-black text-xl md:text-2xl tracking-[0.25em] uppercase mb-6 block border-l-4 border-brand pl-4">
                   UPCOMING SCHEDULE
-                </motion.span>
+                </span>
                 <h2 className="text-6xl md:text-8xl font-black uppercase leading-[0.8] tracking-tighter text-text">
-                  <motion.span variants={fadeUp} className="block">FLAGSHIP</motion.span>
-                  <motion.span variants={fadeUp} className="block shimmer-text">SUMMIT.</motion.span>
+                  <span className="block">FLAGSHIP</span>
+                  <span className="block shimmer-text">SUMMIT.</span>
                 </h2>
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: EASE }}
+                transition={{ duration: 0.7, ease: EASE }}
                 className="flex items-center gap-6"
               >
                  <div className="text-right hidden md:block">
@@ -323,15 +323,15 @@ export default function Home() {
             {summits.map((summit, i) => (
               <motion.div
                 key={i}
-                initial={{ y: 40, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, ease: EASE, delay: i * 0.1 }}
+                initial={{ opacity: 0, scale: 0.88, filter: 'blur(6px)' }}
+                whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                transition={{ duration: 0.7, ease: [0.34, 1.2, 0.64, 1], delay: i * 0.15 }}
                 viewport={{ once: true, amount: 0.05 }}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3, ease: EASE } }}
                 className={`group relative flex flex-col h-full bg-acc-gray/10 border border-acc-gray transition-colors duration-500 hover:shadow-2xl hover:shadow-brand/10 ${expandedIndex === i ? 'border-brand/50 ring-1 ring-brand/10' : 'hover:border-brand/30'}`}
               >
                 {/* Image */}
-                <div className="relative h-[400px] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div className="relative h-[400px] overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={summit.image} alt={summit.title} className="w-full h-full object-cover transform scale-110 group-hover:scale-100 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-brand/10 opacity-0 group-hover:opacity-100 transition-opacity" />
