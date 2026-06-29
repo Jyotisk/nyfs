@@ -117,14 +117,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-bg text-text font-mono selection:bg-brand selection:text-dark-teal transition-colors duration-500 overflow-x-hidden">
+    <div className="relative min-h-screen bg-white text-text font-mono selection:bg-brand selection:text-dark-teal transition-colors duration-500 overflow-x-hidden">
       {/* Scroll progress bar */}
       <motion.div
         style={{ scaleX: scrollYProgress }}
         className="fixed top-0 left-0 right-0 h-1 bg-grad-brand origin-left z-[60]"
       />
 
-      {/* Animated ambient glows */}
+      {/* Background: dot grid + ambient glows */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <motion.div
           aria-hidden
@@ -145,11 +145,11 @@ export default function Home() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: EASE }}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 py-3 bg-bg/70 backdrop-blur-xl border-b border-acc-gray"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 h-14 md:h-20 bg-white/40 backdrop-blur-xl border-b border-acc-gray"
       >
         <Link href="/" className="flex items-center gap-2 group transition-all">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="NYFS" className="h-16 md:h-20 w-auto select-none group-hover:scale-105 transition-transform" />
+          <img src="/logo.png" alt="NYFS" className="h-28 md:h-40 w-auto select-none group-hover:scale-105 transition-transform" />
         </Link>
         <div className="flex items-center gap-4 sm:gap-8 md:gap-12">
           <Link href="/register" className="px-4 sm:px-6 md:px-10 py-2.5 sm:py-3 border-2 border-brand text-brand font-mono font-black text-[11px] sm:text-xs tracking-wider sm:tracking-widest uppercase hover:bg-brand hover:text-white transition-all rounded-sm active:scale-95 inline-flex items-center gap-2">
@@ -458,7 +458,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <footer className="relative z-10 py-20 px-6 md:px-10 bg-bg border-t border-acc-gray">
+      <footer className="relative z-10 py-10 px-6 md:px-10 bg-white border-t border-acc-gray">
          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
