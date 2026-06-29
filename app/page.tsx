@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform, type Variants } from "framer-motion";
 import Lenis from "lenis";
-import { ArrowRight, Rocket, Globe, Zap, Calendar, MapPin } from "lucide-react";
+import { ArrowRight, Rocket, Globe, Zap, Calendar, MapPin, Trophy, Users } from "lucide-react";
 import Link from "next/link";
 
 const summits = [
@@ -99,7 +99,7 @@ export default function Home() {
     target: quoteRef,
     offset: ["start end", "end start"],
   });
-  const quoteY = useTransform(quoteProgress, [0, 1], [60, -60]);
+  const quoteY = useTransform(quoteProgress, [0, 1], [20, -20]);
 
   useEffect(() => {
     const pad = (n: number) => String(n).padStart(2, "0");
@@ -160,16 +160,16 @@ export default function Home() {
 
       {/* ── ABOUT ── */}
       <main className="relative z-10 pt-32 md:pt-40 pb-20 px-6 md:px-10 max-w-7xl mx-auto">
-        <div className="mb-20">
+        <div className="mb-12 md:mb-20">
           <motion.span
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
-            className="text-black font-mono font-black text-xl md:text-2xl tracking-[0.25em] uppercase mb-10 block border-l-4 border-brand pl-4"
+            className="text-black font-mono font-black text-base md:text-2xl tracking-[0.2em] md:tracking-[0.25em] uppercase mb-6 md:mb-10 block border-l-4 border-brand pl-4"
           >
             WHO WE ARE
           </motion.span>
-          <h1 className="text-6xl md:text-[8vw] font-mono font-black uppercase leading-none tracking-tighter text-text">
+          <h1 className="text-5xl md:text-[6.5vw] font-mono font-black uppercase leading-none tracking-tighter text-text">
             <span className="block overflow-hidden">
               <motion.span className="block" variants={lineReveal} initial="hidden" animate="show">
                 ABOUT
@@ -189,7 +189,7 @@ export default function Home() {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <motion.div
             className="space-y-8"
             variants={container}
@@ -238,7 +238,40 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          <div ref={quoteRef} className="relative">
+          <div ref={quoteRef} className="relative flex flex-col gap-4">
+            {/* Floating decorative shapes filling the space above the card */}
+            <div className="relative h-10 md:h-14 hidden lg:block" aria-hidden>
+              <motion.div
+                className="absolute left-2 top-1 w-10 h-10 border-4 border-text bg-brand/20"
+                animate={{ y: [0, -8, 0], rotate: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div
+                className="absolute left-28 top-0 w-8 h-8 rounded-full border-4 border-text bg-orange/30"
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+              />
+              <motion.div
+                className="absolute left-1/2 top-3 w-6 h-6 rounded-full bg-verveine/40"
+                animate={{ y: [0, 7, 0], x: [0, 8, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+              />
+              <motion.div
+                className="absolute right-24 top-0 flex items-center justify-center w-11 h-11 border-4 border-text bg-white shadow-[6px_6px_0_0_var(--verveine)]"
+                animate={{ y: [0, -7, 0], rotate: [0, -8, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+              >
+                <Rocket className="w-5 h-5 text-orange" />
+              </motion.div>
+              <motion.div
+                className="absolute right-2 top-2 flex items-center justify-center w-10 h-10 border-4 border-text bg-white shadow-[6px_6px_0_0_var(--menthe)]"
+                animate={{ y: [0, 8, 0], rotate: [0, 6, 0] }}
+                transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
+              >
+                <Zap className="w-4 h-4 text-brand fill-brand" />
+              </motion.div>
+            </div>
+
             <motion.div
               style={{ y: quoteY }}
               initial={{ opacity: 0, scale: 0.92 }}
@@ -248,11 +281,11 @@ export default function Home() {
               className="relative"
             >
                <div className="absolute inset-0 bg-brand/10 -rotate-3 border-4 border-text" />
-               <div className="relative bg-white/70 backdrop-blur-2xl border-4 border-text p-12 shadow-[16px_16px_0_0_#000]">
+               <div className="relative bg-white/70 backdrop-blur-2xl border-4 border-text p-8 md:p-12 shadow-[12px_12px_0_0_#000] md:shadow-[16px_16px_0_0_#000]">
                   <motion.div animate={{ rotate: [0, 8, -8, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
-                    <Zap className="w-12 h-12 text-orange mb-6" />
+                    <Zap className="w-10 h-10 md:w-12 md:h-12 text-orange mb-6" />
                   </motion.div>
-                  <h2 className="text-4xl font-black uppercase mb-6 leading-none">THE NEW <br /> STANDARD.</h2>
+                  <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 leading-none">THE NEW <br /> STANDARD.</h2>
                   <p className="text-acc-dark italic text-lg md:text-xl">
                     "The standard used to be: have a good idea, then leave to build it.We're setting a new one good idea, and build it right here."
                   </p>
@@ -260,6 +293,41 @@ export default function Home() {
                      <p className="font-mono text-acc-dark text-xs font-black uppercase tracking-widest">Est. 2026 // Northeast India</p>
                   </div>
                </div>
+            </motion.div>
+
+            {/* Quick facts — aligned with the left-hand cards */}
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+              className="grid grid-cols-3 divide-x divide-acc-gray border-4 border-text bg-white/70 backdrop-blur-2xl shadow-[8px_8px_0_0_var(--menthe)]"
+            >
+              {[
+                { Icon: Calendar, label: "DATES", value: <>29th – 31st<br />July, 2026</> },
+                { Icon: Trophy, label: "PRIZE POOL", value: <>Up to<br />Rs. 50,000</> },
+                { Icon: Users, label: "FOR", value: <>High School and College Students</> },
+              ].map(({ Icon, label, value }, i) => (
+                <motion.div
+                  key={label}
+                  variants={fadeUp}
+                  whileHover={{ y: -6 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="group relative p-3 sm:p-4 md:p-6 flex flex-col items-center text-center overflow-hidden"
+                >
+                  {/* hover sweep */}
+                  <span className="absolute inset-0 bg-grad-brand opacity-0 group-hover:opacity-15 transition-opacity duration-300" />
+                  <motion.div
+                    className="relative mb-2 md:mb-3 text-text group-hover:text-brand transition-colors"
+                    animate={{ y: [0, -5, 0], rotate: [0, i % 2 === 0 ? 6 : -6, 0] }}
+                    transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                  >
+                    <Icon className="w-5 h-5 md:w-6 md:h-6" />
+                  </motion.div>
+                  <span className="relative text-[9px] sm:text-[10px] font-black tracking-wider sm:tracking-widest uppercase text-brand mb-1.5 md:mb-2">{label}</span>
+                  <span className="relative text-xs sm:text-sm md:text-base font-black leading-tight text-text">{value}</span>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>
