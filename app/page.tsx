@@ -304,7 +304,7 @@ export default function Home() {
               className="grid grid-cols-3 divide-x divide-acc-gray border-4 border-text bg-white/70 backdrop-blur-2xl shadow-[8px_8px_0_0_var(--menthe)]"
             >
               {[
-                { Icon: Calendar, label: "DATES", value: <>29th – 31st<br />July, 2026</> },
+                { Icon: Calendar, label: "DATES", value: <>29th June – 1st<br />July, 2026</> },
                 { Icon: Trophy, label: "PRIZE POOL", value: <>Up to<br />Rs. 50,000</> },
                 { Icon: Users, label: "FOR", value: <>High School and College Students</> },
               ].map(({ Icon, label, value }, i) => (
